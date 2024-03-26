@@ -21,6 +21,10 @@
     "typescript": "^5.4.3"
   },
   "dependencies": {
-    "@hapi/hapi": "^21.3.7"
+    "@hapi/hapi": "^21.3.7",
+    "@hapi/inert": "^7.1.0",
+    "dotenv": "^16.4.5",
+    "hapi-pino": "^12.1.0",
+    "joi": "^17.12.2"
   }
 }
