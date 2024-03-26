@@ -12,7 +12,7 @@ jest.mock('node:fs', () => {
     };
 });
 
-describe("/POST Thumbnail Creation", () => {
+describe("/POST Thumbnail", () => {
     let server: Server<ServerApplicationState>;
 
     beforeEach(async () => {
@@ -60,5 +60,31 @@ describe("/POST Thumbnail Creation", () => {
             message: "Thumbnail created",
             path: expect.stringMatching(/\/v1\/thumbnail\/[a-z0-9-]+/)
         })
+    });
+});
+
+describe("/GET Thumbnail", () => {
+    let server: Server<ServerApplicationState>;
+
+    beforeEach(async () => {
+        server = await init();
+    });
+
+    afterEach(async () => {
+        await server.stop();
+    });
+
+    it("should return a 404 error", async () => {
+        const response = await server.inject({
+            method: "GET",
+            url: "/v1/thumbnail/invalid-uuid"
+        });
+
+        expect(response.statusCode).toBe(404);
+        expect(response.result).toMatchObject({
+            statusCode: 404,
+            error: "Not Found",
+            message: "Not Found"
+        });
     });
 });
