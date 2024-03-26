@@ -10,7 +10,7 @@ const server = Hapi.server({
     debug: false,
     routes: {
         files: {
-            relativeTo: Path.join(__dirname, 'upload')
+            relativeTo: Path.join(__dirname, '/../uploads')
         }
     }
 });

@@ -50,3 +50,13 @@ export const store = async (
         path: `/v1/thumbnail/${fileName}`
     }).code(200);
 };
+
+export const show = async (
+    request: Request,
+    h: ResponseToolkit
+): Promise<ResponseObject> => {
+    const params = request.params as { id: string };
+    const { id } = params;
+
+    return h.file(`${id}.png`);
+}
